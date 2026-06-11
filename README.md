@@ -37,6 +37,14 @@ Two files define the work, so forced continuation can't wander off and generate 
 | `ENDSTATE.md` | The contract. A narrative (scope) plus acceptance criteria, each machine-checked (`verify:`) or judged from the code by a fresh LLM (`judge:`). Anything not required by this file is out of scope. |
 | `PLAN.md` | The live multi-phase plan. Unchecked boxes mean "keep going"; the agent checks items off as it works. Re-prompts always point at the next unchecked item — grind never invents tasks. |
 
+## ⚠️ Token usage warning
+
+**grind multiplies agent activity by design.** Every blocked stop immediately starts another full Claude Code turn — billed like any other turn — and an unattended session can chain up to `rails.maxContinuationsPerSession` of them (default 25), plus small classifier/judge calls along the way. On a large codebase, a grinding session can consume many times the tokens of a normal interactive session, and you may have to **stop the agent manually** if it's heading somewhere unproductive.
+
+- **Watch your first sessions.** Don't leave grind unattended until you trust your `ENDSTATE.md`, your plan, and your rails.
+- **To stop manually:** press `Esc` in Claude Code to interrupt the current turn — the Stop hook does not fire on user interrupts, so no re-prompt follows — then run `grind off` (or create `.grind/OFF`) to keep it disengaged.
+- **Start cautious:** lower `rails.maxContinuationsPerSession` and `rails.maxSessionMinutes` in `.grind/config.json`, and set `classifier.useLlm: false` to remove all internal LLM calls.
+
 ## Requirements
 
 - Node.js ≥ 18 (no dependencies, no build step)

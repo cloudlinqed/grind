@@ -135,6 +135,11 @@ function init(target) {
   for (const f of copies) console.log(`- ${f} created from template — EDIT THIS before relying on grind`);
   console.log(`- Stop hook ${wired ? 'wired into' : 'already present in'} .claude/settings.json${backedUp ? ' (previous file backed up as settings.json.grind-backup)' : ''}`);
   console.log(`
+WARNING: grind multiplies token usage by design — every blocked stop starts
+another full agent turn (up to ${defaultConfig().rails.maxContinuationsPerSession}/session by default). Watch your first
+sessions; press Esc to interrupt the agent manually, then "grind off" to
+disengage. Lower the rails in .grind/config.json to start cautious.
+
 Next steps:
 1. Edit ENDSTATE.md: the narrative defines scope, the checklist defines done (verify:/judge: tags).
 2. Keep PLAN.md as the live multi-phase plan — Claude checks items off as it works.
