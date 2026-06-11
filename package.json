@@ -1,0 +1,33 @@
+{
+  "name": "grind",
+  "version": "0.1.0",
+  "description": "Supervisor loop for Claude Code: consciously re-prompts premature stops until the plan is done and the end state validates.",
+  "type": "module",
+  "bin": {
+    "grind": "./bin/grind.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node test/smoke.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudlinqed/grind.git"
+  },
+  "homepage": "https://github.com/cloudlinqed/grind#readme",
+  "bugs": {
+    "url": "https://github.com/cloudlinqed/grind/issues"
+  },
+  "author": "cloudlinqed",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "agent",
+    "hooks",
+    "autonomous",
+    "supervisor",
+    "coding-agent"
+  ]
+}

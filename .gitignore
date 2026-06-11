@@ -1,0 +1,4 @@
+node_modules/
+.grind/
+.claude/
+*.log
